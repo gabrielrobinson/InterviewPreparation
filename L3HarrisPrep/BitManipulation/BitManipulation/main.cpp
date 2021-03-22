@@ -186,6 +186,10 @@ std::string invertString(std::string s) {
     return lowercaseS;
 }
 
+int getPositionInAlphabet(char letter) {
+    return 'A' & 31;
+}
+
 
 int main(int argc, const char * argv[]) {
 //    testSwapInt();
