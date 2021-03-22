@@ -135,6 +135,57 @@ int positionOfSetBit(int n) {
     return log2(n) + 1;
 }
 
+bool findParity(unsigned int n) {
+    bool parity = false;
+    
+    while(n) {
+        
+        if (n & 1)
+            parity = !parity;
+        
+        n = n >> 1;
+    }
+    
+    return parity;
+}
+
+std::string toLowercase(std::string s) {
+    std::string lowercaseS = "";
+    for (int i = 0; i < s.size(); i++) {
+        int charValue = int(s[i]);
+        if (charValue >= 65 && charValue <= 90) {
+            char newChar = charValue + 32;
+            lowercaseS += newChar;
+        } else {
+            lowercaseS += charValue;
+        }
+    }
+    return lowercaseS;
+}
+
+std::string toUppercase(std::string s) {
+    std::string lowercaseS = "";
+    for (int i = 0; i < s.size(); i++) {
+        int charValue = int(s[i]);
+        if (charValue >= 97 && charValue <= 122) {
+            char newChar = charValue - 32;
+            lowercaseS += newChar;
+        } else {
+            lowercaseS += charValue;
+        }
+    }
+    return lowercaseS;
+}
+
+std::string invertString(std::string s) {
+    std::string lowercaseS = "";
+    for (int i = 0; i < s.size(); i++) {
+        int charValue = int(s[i]);
+        lowercaseS += charValue ^ ' ';
+    }
+    return lowercaseS;
+}
+
 
 int main(int argc, const char * argv[]) {
 //    testSwapInt();
@@ -152,7 +203,9 @@ int main(int argc, const char * argv[]) {
 //    std::cout << "Test passed\n" << std::endl;
 //    testKthBitIsSet();
 //    testIsPowerOfTwo();
-    testPositionOfRightMostSetBit();
+//    testPositionOfRightMostSetBit();
+//    std::cout << toLowercase("ABCDEFGHIJKLMNOPQRSTUVWXYZ") << std::endl;
+    std::cout << invertString("aBcDeFgHiJkLmNoPqRsTuVwXyZ") << std::endl;
     return 0;
 }
 
