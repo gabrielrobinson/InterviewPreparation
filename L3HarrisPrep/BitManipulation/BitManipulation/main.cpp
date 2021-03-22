@@ -91,9 +91,50 @@ void unsetRightMostBit(int &n) {
     n = n & (n - 1);
 }
 
-void testUnsetRightMostBit() {
-    
+bool isPowerOfTwo(int n) {
+    return (n & (n - 1)) == 0;
 }
+
+void testIsPowerOfTwo() {
+    int i = 1;
+    for (; i <= 4096; i *= 2) {
+        assert(isPowerOfTwo(i));
+    }
+    std::cout << "Test passed" << std::endl;
+}
+
+int positionOfRightMostSetBit(int n) {
+    int position = 1;
+        
+    while(!(n & 1)) {
+        n = n >> 1;
+        position++;
+    }
+    
+    return position;
+}
+
+void testPositionOfRightMostSetBit() {
+    assert(positionOfRightMostSetBit(1) == 1);
+    assert(positionOfRightMostSetBit(2) == 2);
+    assert(positionOfRightMostSetBit(4) == 3);
+    assert(positionOfRightMostSetBit(8) == 4);
+    assert(positionOfRightMostSetBit(16) == 5);
+    assert(positionOfRightMostSetBit(32) == 6);
+    assert(positionOfRightMostSetBit(64) == 7);
+    assert(positionOfRightMostSetBit(128) == 8);
+    std::cout << "Test passed" << std::endl;
+}
+
+int positionOfSetBit(int n) {
+    if (n & (n - 1)) {
+        std::cout << "Incorrect input." << std::endl;
+        return -1;
+    }
+    
+    return log2(n) + 1;
+}
+
 
 int main(int argc, const char * argv[]) {
 //    testSwapInt();
@@ -109,7 +150,9 @@ int main(int argc, const char * argv[]) {
 //    turnOnKthBit(n, k);
 //    assert(n == 20);
 //    std::cout << "Test passed\n" << std::endl;
-    testKthBitIsSet();
+//    testKthBitIsSet();
+//    testIsPowerOfTwo();
+    testPositionOfRightMostSetBit();
     return 0;
 }
 
