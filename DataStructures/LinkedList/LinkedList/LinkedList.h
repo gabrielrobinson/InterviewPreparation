@@ -20,9 +20,9 @@ private:
 public:
     LinkedList();
     ~LinkedList();
-    void pushBack(int value);
-    void remove(int value);
-    bool contains(int value);
-}
+    void PushBack(int value);
+    bool Remove(int value);
+    bool Contains(int value);
+};
 
 #endif /* LinkedList_h */
