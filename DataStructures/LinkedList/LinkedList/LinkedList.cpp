@@ -21,7 +21,7 @@ LinkedList::~LinkedList() {
     }
 }
 
-void LinkedList::pushBack(int value) {
+void LinkedList::PushBack(int value) {
     if (this->headNode == NULL) {
         this->headNode = new LinkedListNode();
         this->headNode->value = value;
@@ -34,11 +34,13 @@ void LinkedList::pushBack(int value) {
     
 }
 
-void LinkedList::remove(int value) {
+bool LinkedList::Remove(int value) {
     if (this->headNode != NULL && this->headNode->value == value) {
         LinkedListNode* nodeToDelete = headNode;
-        if (nodeToDelete->next != NULL) this->headNode = nodeToDelete->next;
+        if (nodeToDelete->next != NULL) this->headNode = this->headNode->next;
+        else this->headNode = NULL;
         delete nodeToDelete;
+        return true;
     } else {
         LinkedListNode* previousNode = NULL;
         LinkedListNode* currentNode = this->headNode;
@@ -49,13 +51,15 @@ void LinkedList::remove(int value) {
                 if (currentNode->value == value) {
                     previousNode->next = currentNode->next;
                     delete currentNode;
+                    return true;
                 }
             }
         }
     }
+    return false;
 }
 
-bool LinkedList::contains(int value) {
+bool LinkedList::Contains(int value) {
     if (this->headNode != NULL) {
         if (this->headNode->value == value) {
             return true;
