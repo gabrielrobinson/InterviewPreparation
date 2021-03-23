@@ -6,8 +6,9 @@
 //
 
 #include <iostream>
+#include "LinkedList.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
+    LinkedList list
     return 0;
 }

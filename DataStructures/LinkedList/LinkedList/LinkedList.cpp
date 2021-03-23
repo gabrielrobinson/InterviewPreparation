@@ -10,7 +10,15 @@
 LinkedList::LinkedList() { }
 
 LinkedList::~LinkedList() {
-    
+    if (this->headNode != NULL) {
+        LinkedListNode* previousNode = NULL;
+        LinkedListNode* currentNode = this->headNode;
+        while (currentNode->next != NULL) {
+            previousNode = currentNode;
+            currentNode = currentNode->next;
+            delete previousNode;
+        }
+    }
 }
 
 void LinkedList::pushBack(int value) {
@@ -27,9 +35,37 @@ void LinkedList::pushBack(int value) {
 }
 
 void LinkedList::remove(int value) {
-    
+    if (this->headNode != NULL && this->headNode->value == value) {
+        LinkedListNode* nodeToDelete = headNode;
+        if (nodeToDelete->next != NULL) this->headNode = nodeToDelete->next;
+        delete nodeToDelete;
+    } else {
+        LinkedListNode* previousNode = NULL;
+        LinkedListNode* currentNode = this->headNode;
+        if (currentNode != NULL) {
+            while (currentNode->next != NULL) {
+                previousNode = currentNode;
+                currentNode = currentNode->next;
+                if (currentNode->value == value) {
+                    previousNode->next = currentNode->next;
+                    delete currentNode;
+                }
+            }
+        }
+    }
 }
 
-void LinkedList::contains(int value) {
-    
+bool LinkedList::contains(int value) {
+    if (this->headNode != NULL) {
+        if (this->headNode->value == value) {
+            return true;
+        } else {
+            LinkedListNode* node = this->headNode;
+            while (node->next != NULL) {
+                node = node->next;
+                if (node->value == value) return true;
+            }
+        }
+    }
+    return false;
 }
