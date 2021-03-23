@@ -22,7 +22,7 @@ public:
     ~LinkedList();
     void pushBack(int value);
     void remove(int value);
-    void contains(int value);
+    bool contains(int value);
 }
 
 #endif /* LinkedList_h */
